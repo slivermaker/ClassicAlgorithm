@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+int n = scanner.nextInt();
+int dp1[] = new int[n];
+int dp2[] = new int[n];
+int num[] = new int[n];
+for (int i = 0; i < n; i++) {
+num[i] = scanner.nextInt();
+}
+// 顺序dp dp1
+for (int i = 0; i < n; i++) {
+dp1[i] = 1;
+for (int j = 0; j < i; j++) {
+if (num[i] > num[j]) {
+dp1[i] = Math.max(dp1[i], dp1[j] + 1);
+}
+}
+}
+// 倒序dp dp2
+for (int i = n - 1; i >= 0; i--) {
+dp2[i] = 1;
+for (int j = n - 1; j > i; j--) {
+if (num[i] < num[j]) {
+dp2[i] = Math.max(dp2[i], dp2[j] + 1);
+}
+}
+}
+int res = 1;
+
+// dp1不为空,dp2为空
+for (int i = 0; i < n - 1; i++) {
+res = Math.max(res, dp1[i] + 1);
+}
+res = Math.max(res, dp1[n - 1]);
+
+// dp1为空,dp2不为空
+for (int i = n - 1; i >= 1; i--) {
+if (num[i] != 0) {
+res = Math.max(res, dp2[i] + 1);
+} else {
+res = Math.max(res, dp2[i]);
+}
+}
+res = Math.max(res, dp2[0]);
+
+// dp1不为空,dp2不为空
+for (int i = 0; i < n; i++) {
+for (int j = i + 1; j < n; j++) {
+if (num[i] < num[j]) {
+if (i == j - 1) {
+res = Math.max(res, dp2[j] + dp1[i]);
+} else if (num[i] + 1 < num[j]) {
+res = Math.max(res, dp2[j] + dp1[i] + 1);
+} else {
+res = Math.max(res, dp2[j] + dp1[i]);
+}
+}
+}
+}
+System.out.println(res);
+}
+}
