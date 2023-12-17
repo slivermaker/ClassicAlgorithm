@@ -34,3 +34,13 @@
  * 状态:数科 退役 单身 饿 文件md格式 不完全兼容pdf(因为有链接，pdf打不开)
  */
 ```
+
+### sayaplay.java
+
+这是baobao  package
+
+### 做题
+
+#### 蓝桥solutions
+
+这个的问题是图片在本地没有上传🥲
