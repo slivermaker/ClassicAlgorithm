@@ -925,7 +925,7 @@ if __name__ == '__main__':
 
 下面给出Java和py代码
 
-![image-20231217002837469](../../../AppData/Roaming/Typora/typora-user-images/image-20231217002837469.png)
+![image-20231217002837469](C:/Users/23580/AppData/Roaming/Typora/typora-user-images/image-20231217002837469.png)
 
 ```java
 import java.util.*;
@@ -1101,5 +1101,34 @@ if __name__ == '__main__':
         # print("%d" % dist[i],end=' ')
 
     print()  # 结尾换行
+```
+
+
+
+
+
+二位偏序问题：主要展示排序lambda
+
+```python
+class Solution:
+    def maximumSumQueries(self, nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        ans = [-1] * len(queries)
+        a = sorted(((a, b) for a, b in zip(nums1, nums2)), key=lambda p: -p[0])
+        j = 0
+        st = []
+        for i, (x, y) in sorted(enumerate(queries), key=lambda p: -p[1][0]):
+            while j < len(a) and a[j][0] >= x:  # 下面只需关心 ay (a[j][1])
+                ax, ay = a[j]
+                while st and st[-1][1] <= ax + ay:  # ay >= st[-1][0]
+                    st.pop()
+                if not st or st[-1][0] < ay:
+                    st.append((ay, ax + ay))
+                j += 1
+            p = bisect_left(st, (y,))
+            if p < len(st):
+                ans[i] = st[p][1]
+        return ans
+
+#https://leetcode.cn/problems/maximum-sum-queries/description/?envType=list&envId=0eYRM9Tb
 ```
 
