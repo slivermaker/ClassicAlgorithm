@@ -34,6 +34,19 @@
 
 
 ### 输入输出
+io = lambda:sys.stdin.readline().strip()和input()在我看来就差不多了，会快一点
+
+1. **io = lambda:sys.stdin.readline().strip()：**
+   - 这一行定义了一个lambda函数，并将其赋值给变量io。这个lambda函数不带参数，当调用`io()`时，它会执行`sys.stdin.readline().strip()`，返回标准输入的一行去掉行尾空白的字符串。这种方式将读取输入的逻辑封装在一个lambda函数中，可以在程序中的其他地方多次调用。
+
+2. **io = sys.stdin.readline().strip()：**
+   - 这一行直接将`sys.stdin.readline().strip()`的结果赋值给io。在这种情况下，io不再是一个函数，而是一个包含了从标准输入读取的一行去掉行尾空白的字符串。如果你多次使用`io`，它将保持相同的值，而不会再次读取新的输入。
+
+所以，第一个例子使用lambda函数封装了读取输入的逻辑，并且每次调用`io()`都会重新读取新的输入行，而第二个例子在一开始就读取了一行输入，后续的使用将一直使用这个读取的结果。
+
+**M = **lambda**:list(map(int,input().split()))**同理调用的时候M()就可以了把input换成io同理
+
+
 
 u, v, w = [int(x) for x in input().split()]
 
