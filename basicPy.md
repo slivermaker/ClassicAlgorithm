@@ -990,7 +990,7 @@ if __name__ == '__main__':
 
 下面给出Java和py代码
 
-![image-20231217002837469](C:/Users/23580/AppData/Roaming/Typora/typora-user-images/image-20231217002837469.png)
+<img width="867" alt="image" src="https://github.com/slivermaker/ClassicAlgorithm/assets/86837593/92a2bd44-8d45-406b-8c78-287fb9549fb1">
 
 ```java
 import java.util.*;
