@@ -29,6 +29,22 @@
 
 
 
+```python
+from collections import Counter
+import sys
+iar = lambda:list(map(int,input().split()))
+io = lambda: sys.stdin.readline().strip()
+
+def main():
+    print()
+
+if __name__ == "__main__":
+    t = int(io())
+    for test in range(t):
+        main()
+
+```
+
 
 
 
@@ -107,7 +123,21 @@ Copy Code1 3 3
 4.  这些解包后的行参数将作为多个参数传递给 `zip()` 函数。因此，`zip(*mat)` 实际上相当于 `zip(row1, row2, row3, ...)`
 5.  `zip(*mat)` 将每个参数（即每行的元素）的相应位置组合成元组，并返回一个迭代器，其中每个元素都是来自 `mat` 中相同列的元素所组成的元组。
 
+\*
+
 这种参数解包的方式非常方便，可以将数组的行或列作为单独的参数进行处理，例如在这段代码中用于分离二维数组的列。
+
+```
+res = ['bcd', 'bcd', 'bcd', 'bcd']
+print(*res, sep='.')
+```
+
+这相当于：
+
+```
+
+print('bcd', 'bcd', 'bcd', 'bcd', sep='.')
+```
 
 $**$用于字典
 
@@ -121,6 +151,28 @@ for i in range(4):  # 这里假设输入 4 行数据
     # 当然你可以选择初始化长度为 MAXN 的全 0 列表，不过需要记住真实长度并删掉多余元素
 print(u, v, w)
 ```
+
+**读取多行数据变为一行**
+
+```python
+def main():
+    arr = []
+    for _ in range(3):
+        arr.extend(io())#前面加个list就是二维，不加就是一维，字符串自带迭代所以直接extend就行
+    
+    cnt = Counter(arr)#计数，但是要提前import
+
+    
+    for k, v in cnt.items():
+        if v == 2:
+            print(k)
+```
+
+
+
+
+
+
 
 
 
