@@ -48,4 +48,4 @@
 ### 2023秋招笔试
 主要是2023年八月到十月的大厂笔试题，B站有讲解视频
 
-[B站讲解系列](https://space.bilibili.com/182853683/channel/seriesdetail?sid=3570665&ctype=0)
+[B站讲解系列](https://space.bilibili.com/182853683)
