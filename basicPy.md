@@ -98,7 +98,7 @@ u, v, w = [int(x) for x in input().split()]
 正确的输入应该像这样：
 
 ```
-Copy Code1 3 3
+1 3 3
 1 4 1
 2 3 4
 3 4 1
@@ -412,8 +412,8 @@ False
 
 如果你想创建多个数组，你可以使用`np.zeros`、`np.ones`或`np.empty`等函数，并将它们赋值给不同的变量。例如，你可以这样创建多个数组：
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 a = np.zeros((3, 3))
 b = np.ones((2, 4))
@@ -436,8 +436,8 @@ print(c)
 
 方法一：使用切片操作
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 # 假设 vis 是一个形状为 (5, 4) 的二维数组
 vis = np.array([[1, 2, 3, 4],
@@ -472,8 +472,8 @@ a1.flatten()：这个方法将多维数组 a1 平铺成一维数组。返回的�
 
 以下是一个示例：
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 a1 = np.array([[1, 2, 3],
                [4, 5, 6]])
@@ -503,8 +503,8 @@ sort怎么改变原数组怎么不改变来着
 
 示例：
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 arr = np.array([3, 1, 4, 2, 5])
 
@@ -520,8 +520,8 @@ print(arr)  # [1 2 3 4 5]
 
 示例：
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 arr = np.array([3, 1, 4, 2, 5])
 
@@ -551,8 +551,8 @@ print(arr)        # [3 1 4 2 5]
 
 示例：
 
-```
-pythonCopy Codeimport numpy as np
+```python
+import numpy as np
 
 a1 = np.array([[3, 1, 4],
                [2, 5, 0]])
@@ -566,7 +566,7 @@ print(a1)
 输出结果：
 
 ```
-Copy Code[[1 3 4]
+[[1 3 4]
  [0 2 5]]
 
 ```
@@ -605,8 +605,8 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
 
 以下是一个使用 `:=` 符号的例子：
 
-```
-pythonCopy Codewhile (line := input("请输入一行文本：")) != "quit":
+```python
+while (line := input("请输入一行文本：")) != "quit":
     print("你输入的是：" + line)
 
 ```
@@ -623,71 +623,71 @@ pythonCopy Codewhile (line := input("请输入一行文本：")) != "quit":
 
 1. **基本形式：**
 
-   ```
-   pythonCopy codedic = {'key': "value"}
+   ```python
+   codedic = {'key': "value"}
    print(dic)
    # 输出: {'key': 'value'}
    ```
 
 2. **大写字母到对应 ASCII 码的映射：**
 
-   ```
-   pythonCopy codedic = {chr(i): i for i in range(65, 91)}
+   ```python
+   codedic = {chr(i): i for i in range(65, 91)}
    print(dic)
    # 输出: {'A': 65, 'B': 66, ..., 'Z': 90}
    ```
 
 3. **与上述效果相同：**
 
-   ```
-   pythonCopy codedic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))
+   ```python 
+   dic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))
    print(dic)
    # 输出: {'A': 65, 'B': 66, ..., 'Z': 90}
    ```
 
 4. **将键值对逆转：**
 
-   ```
-   pythonCopy codedic = {dic[k]: k for k in dic}
+   ```python
+   dic = {dic[k]: k for k in dic}
    print(dic)
    # 输出: {65: 'A', 66: 'B', ..., 90: 'Z'}
    ```
 
 5. **和上一行作用相同：**
 
-   ```
-   pythonCopy codedic = {v: k for k, v in dic.items()}
+   ```python
+   dic = {v: k for k, v in dic.items()}
    print(dic)
    # 输出: {65: 'A', 66: 'B', ..., 90: 'Z'}
    ```
 
 6. **字典按值逆排序：**
 
-   ```
-   pythonCopy codedic = {k: v for k, v in sorted(dic.items(), key=lambda x: -x[1])}
+   ```python
+   dic = {k: v for k, v in sorted(dic.items(), key=lambda x: -x[1])}
    print(dic)
    # 输出: {90: 'Z', 89: 'Y', ..., 65: 'A'}
    ```
 
 7. **访问字典中以 'A' 为键的项：**
 
-   ```
-   pythonCopy codeprint(dic['A'])
+   ```python
+   print(dic['A'])
    # 输出: 65
    ```
 
 8. **将字典中 'a' 对应的值设为 97：**
 
-   ```
-   pythonCopy codedic['a'] = 97
+   ```python
+   dic['a'] = 97
    print(dic)
    # 输出: {'A': 65, 'B': 66, ..., 'Z': 90, 'a': 97}
    ```
 
 9. **检查 'b' 是否在字典中，如果是则打印值，否则将 'b' 插入字典：**
 
-   ```
-   pythonCopy codeif 'b' in dic:
+   ```python
+   if 'b' in dic:
        print(dic['b'])
    else:
        dic['b'] = 98
@@ -697,8 +697,8 @@ pythonCopy Codewhile (line := input("请输入一行文本：")) != "quit":
 
 10. **统计出现次数：**
 
-```
-pythonCopy codekey = 'example_key'
+```python
+key = 'example_key'
 try:
     dic[key] += 1
 except KeyError:
@@ -716,7 +716,7 @@ print(dic)
 `map()` 函数的基本语法如下：
 
 ```
-pythonCopy Codemap(function, iterable)
+map(function, iterable)
 
 ```
 
@@ -724,8 +724,8 @@ pythonCopy Codemap(function, iterable)
 
 以下是 `map()` 函数的使用例子：
 
-```
-pythonCopy Code# 将列表中的每个元素平方
+```python
+# 将列表中的每个元素平方
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = list(map(lambda x: x**2, numbers))
 print(squared_numbers)
