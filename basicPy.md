@@ -251,7 +251,7 @@ def fib(n):
 
 [5. 数据结构 列表递推式— Python 3.12.1 文档](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#list-comprehensions)
 
-**''.join(\[chr(ord(ch) - 65 + 97) for ch in s if ch >= 'A' and ch <= 'Z'\]) **
+**''.join([chr(ord(ch) - 65 + 97) for ch in s if ch >= 'A' and ch <= 'Z']) **
 
 解释一下这个语法的知识点
 
@@ -274,7 +274,7 @@ def fib(n):
 
 
 
-**vis1 = \[\[0\] \* 3 for \_ in range(3)\]**
+**vis1 = [[0] * 3 for _ in range(3)]**
 
 
 
