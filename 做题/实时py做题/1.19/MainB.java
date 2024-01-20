@@ -4,7 +4,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main{
+public class MainB{
     static final int mod=1000000007;
     public static void main(String[] args) {
         ac in=new ac();
