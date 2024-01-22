@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def maxWidthRamp(self, A: List[int]) -> int:
         res, n = 0, len(A)
