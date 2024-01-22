@@ -7,9 +7,9 @@ public class MainD {
         ac in = new ac();
 
         int n = in.nextInt();
-        long arr[] = new long[n];
+        int arr[] = new int[n];
         int tmp[]=new int[n];
-        for (int i = 0; i < n; i++) {arr[i] = in.nextLong();tmp[i]=arr[i];}
+        for (int i = 0; i < n; i++) {arr[i] = in.nextInt();tmp[i]=arr[i];}
         Arrays.sort(arr);
         if (n == 2) {
             in.printf("%.1f\n%.1f", (double) arr[1], (double) arr[0]);
