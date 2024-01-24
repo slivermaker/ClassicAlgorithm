@@ -757,6 +757,115 @@ def append_to(element, to=None):
     return to
 ```
 
+**优先队列**
+`heapq` 模块提供了对堆（heap）的操作，包括将列表转换为堆、从堆中插入和弹出元素等。以下是一些 `heapq` 模块的常见用法：
+
+1. **将列表转换为堆：**
+   - 使用 `heapq.heapify()` 函数可以将一个列表转换为堆。
+
+    ```python
+    import heapq
+
+    my_list = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+    heapq.heapify(my_list)
+
+    print(my_list)  # 输出: [1, 1, 2, 3, 3, 9, 4, 6, 5, 5, 5]
+    ```
+
+2. **向堆中插入元素：**
+   - 使用 `heapq.heappush()` 函数可以向堆中插入一个元素。
+
+    ```python
+    import heapq
+
+    my_heap = [1, 3, 5, 7, 9]
+    heapq.heappush(my_heap, 4)
+
+    print(my_heap)  # 输出: [1, 3, 4, 7, 9, 5]
+    ```
+
+3. **从堆中弹出最小元素：**
+   - 使用 `heapq.heappop()` 函数可以从堆中弹出最小的元素。
+
+    ```python
+    import heapq
+
+    my_heap = [1, 3, 4, 7, 9, 5]
+    smallest = heapq.heappop(my_heap)
+
+    print(smallest)  # 输出: 1
+    print(my_heap)   # 输出: [3, 7, 4, 9, 5]
+    ```
+
+4. **获取最小元素但不弹出：**
+   - 使用 `heapq.nsmallest()` 函数可以获取堆中最小的几个元素，但不会修改原始堆。
+
+    ```python
+    import heapq
+
+    my_heap = [1, 3, 4, 7, 9, 5]
+    smallest_items = heapq.nsmallest(3, my_heap)
+
+    print(smallest_items)  # 输出: [1, 3, 4]
+    ```
+
+这些是 `heapq` 模块的一些基本用法。堆在很多算法中都有广泛的应用，例如在优先队列中，Dijkstra算法中等。
+
+在使用 `heapq` 模块时，你可以通过在元组中使用自定义的比较函数来实现自定义排序。比如，如果希望按照元组的第二个元素进行排序，而不是默认的按照元组的第一个元素，可以传递一个 lambda 函数作为排序的 key。
+
+5. **如何使用自定义排序**
+
+```python
+import heapq
+
+# 自定义比较函数，按元组的第二个元素进行排序
+custom_compare = lambda x: x[1]
+
+# 原始列表
+my_list = [(3, 9), (1, 7), (4, 5), (1, 2), (5, 8)]
+
+# 将列表转换为堆，使用自定义比较函数
+heapq.heapify(my_list, key=custom_compare)
+
+# 弹出堆中的元素
+while my_list:
+    item = heapq.heappop(my_list, key=custom_compare)
+    print(item)
+```
+
+在上面的例子中，我们使用 `heapq.heapify()` 函数将列表转换为堆，并通过传递 `key` 参数使用自定义比较函数。然后，在弹出元素时，同样使用了 `key` 参数，确保按照指定的比较函数进行排序。
+
+注意：在 Python 3.10 及更高版本中，`heapq` 模块提供了一个名为 `key` 的可选参数，可以直接用于指定比较函数。在之前的版本中，需要通过 lambda 函数来实现。
+
+在 Python 3.9 及之前的版本中，`heapq` 模块不直接支持 `key` 参数。相反，可以通过传递带有自定义比较函数的元组来实现自定义排序。以下是一个使用 lambda 函数的例子：
+
+```python
+import heapq
+
+# 自定义比较函数，按元组的第二个元素进行排序
+custom_compare = lambda x: x[1]
+
+# 原始列表
+my_list = [(3, 9), (1, 7), (4, 5), (1, 2), (5, 8)]
+
+# 将每个元组都包装在具有自定义比较函数的元组中
+wrapped_list = [(custom_compare(item), item) for item in my_list]
+
+# 将包装后的列表转换为堆
+heapq.heapify(wrapped_list)
+
+# 弹出堆中的元素
+while wrapped_list:
+    _, item = heapq.heappop(wrapped_list)
+    print(item)
+```
+
+在这个例子中，我们创建了一个新的列表 `wrapped_list`，其中每个元组都被包装在具有自定义比较函数的元组中。然后，我们使用 `heapq.heapify()` 将这个包装后的列表转换为堆。在弹出元素时，我们只关心原始元组，而不关心包装后的比较值。
+
+在 Python 3.10 及更高版本中，直接使用 `key` 参数更加方便。
+
+
+
 
 
 **对象**
@@ -909,7 +1018,7 @@ $\text{Ag} \rightarrow \text{Cu}$；
 0 2 4 3
 ```
 
-## 
+## 实战
 
 样例解释请参考 [数据随机的模板题](https://www.luogu.org/problemnew/show/P3371)。
 
