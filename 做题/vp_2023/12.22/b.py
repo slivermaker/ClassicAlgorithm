@@ -10,7 +10,7 @@ iar = lambda: list(map(int, io().split()))
 def main():
     x, y = iar()
     mul = x * y
-    for a in range(math.ceil(math.sqrt(mul)) + 1):
+    for a in range(1, math.ceil(math.sqrt(mul)) + 1):
         if mul % a == 0:
             b = mul // a
             if math.gcd(a, b) == x:
