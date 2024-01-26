@@ -1147,3 +1147,82 @@ class Solution {
 链接：https://leetcode.cn/circle/discuss/I5FOFr/
 ```
 
+```java
+//董晓老师的lca模板
+class LCA {
+        //倍增求LCA模板
+        static final int N  = (int) (4e5 + 10);
+        int n, s;
+        List<int[]>[] g;
+        int[] dep;
+        int[][] fa;
+        int[][] cnt; // cnt[i][x] 表示从节点1到节点i边权为x出现的次数
+
+        /**
+         * dfs树上倍增
+         * @param u
+         * @param father
+         */
+        public void dfs(int u, int father) { //树增dep,fa
+            dep[u] = dep[father] + 1;
+            // 向上跳1，2，4...步的祖先节点
+            fa[u][0] = father;
+            for (int i = 1; i <= 20; i++) {
+                fa[u][i] = fa[fa[u][i-1]][i-1];
+            }
+            for (int[] next : g[u]) {
+                int v = next[0], w = next[1];
+                if (v != father) {
+                    for (int i = 1; i <= 26; i++) {
+                        cnt[v][i] += cnt[u][i];
+                    }
+                    cnt[v][w]++;
+                    dfs(v, u);
+                }
+
+            }
+        }
+        /**
+         * 返回u和v的最近公共祖先
+         * @param u
+         * @param v
+         * @return
+         */
+        public int lca(int u, int v) {
+            if (dep[u] < dep[v]) {
+                // swap(u, v)
+                int temp = u;
+                u = v;
+                v = temp;
+            }
+            //u先大步后小步向上跳，直到与v同层
+            for (int i = 20; i >= 0; i--) {
+                if (dep[fa[u][i]] >= dep[v]) {
+                    u = fa[u][i];
+                }
+            }
+            if (u == v) return v;
+            //u,v一起向上跳，直到lca的下面
+            for (int i = 20; i >= 0; i--) {
+                if (fa[u][i] != fa[v][i]) {
+                    u = fa[u][i];
+                    v = fa[v][i];
+                }
+            }
+            return fa[u][0];
+        }
+
+        public LCA(int n) {
+            g = new List[n+1];
+            dep = new int[n+1];
+            fa = new int[n+1][22];
+            cnt = new int[n+1][27];
+            for (int i = 1; i <= n; i++) {
+                g[i] = new ArrayList<>();
+            }
+        }
+    }
+
+
+
+```
