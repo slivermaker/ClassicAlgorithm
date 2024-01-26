@@ -1146,7 +1146,7 @@ class Solution {
 作者：珂朵莉
 链接：https://leetcode.cn/circle/discuss/I5FOFr/
 ```
-
+#### lca
 ```java
 //董晓老师的lca模板
 class LCA {
@@ -1224,5 +1224,118 @@ class LCA {
     }
 
 
+//endlesschen
+class TreeAncestor {
+    private int[] depth;
+    private int[][] pa;
 
+    public TreeAncestor(int[][] edges) {
+        int n = edges.length + 1;
+        int m = 32 - Integer.numberOfLeadingZeros(n); // n 的二进制长度
+        List<Integer> g[] = new ArrayList[n];
+        Arrays.setAll(g, e -> new ArrayList<>());
+        for (var e : edges) { // 节点编号从 0 开始
+            int x = e[0], y = e[1];
+            g[x].add(y);
+            g[y].add(x);
+        }
+
+        depth = new int[n];
+        pa = new int[n][m];
+        dfs(g, 0, -1);
+
+        for (int i = 0; i < m - 1; i++) {
+            for (int x = 0; x < n; x++) {
+                int p = pa[x][i];
+                pa[x][i + 1] = p < 0 ? -1 : pa[p][i];
+            }
+        }
+    }
+
+    private void dfs(List<Integer>[] g, int x, int fa) {
+        pa[x][0] = fa;
+        for (int y : g[x]) {
+            if (y != fa) {
+                depth[y] = depth[x] + 1;
+                dfs(g, y, x);
+            }
+        }
+    }
+
+    public int getKthAncestor(int node, int k) {
+        for (; k > 0; k &= k - 1)
+            node = pa[node][Integer.numberOfTrailingZeros(k)];
+        return node;
+    }
+
+    public int getLCA(int x, int y) {
+        if (depth[x] > depth[y]) {
+            int tmp = y;
+            y = x;
+            x = tmp;
+        }
+        // 使 y 和 x 在同一深度
+        y = getKthAncestor(y, depth[y] - depth[x]);
+        if (y == x)
+            return x;
+        for (int i = pa[x].length - 1; i >= 0; i--) {
+            int px = pa[x][i], py = pa[y][i];
+            if (px != py) {
+                x = px;
+                y = py;
+            }
+        }
+        return pa[x][0];
+    }
+}
+
+作者：灵茶山艾府
+链接：https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/solutions/2305895/mo-ban-jiang-jie-shu-shang-bei-zeng-suan-v3rw/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+```
+#### 查询某个节点第k祖先
+```java 
+
+class TreeAncestor {
+    private int[][] pa;
+
+    public TreeAncestor(int n, int[] parent) {
+        int m = 32 - Integer.numberOfLeadingZeros(n); // n 的二进制长度
+        pa = new int[n][m];
+        for (int i = 0; i < n; i++)
+            pa[i][0] = parent[i];
+        for (int i = 0; i < m - 1; i++) {
+            for (int x = 0; x < n; x++) {
+                int p = pa[x][i];
+                pa[x][i + 1] = p < 0 ? -1 : pa[p][i];
+            }
+        }
+    }
+
+    public int getKthAncestor(int node, int k) {
+        int m = 32 - Integer.numberOfLeadingZeros(k); // k 的二进制长度
+        for (int i = 0; i < m; i++) {
+            if (((k >> i) & 1) > 0) { // k 的二进制从低到高第 i 位是 1
+                node = pa[node][i];
+                if (node < 0) break;
+            }
+        }
+        return node;
+    }
+
+    // 另一种写法，不断去掉 k 的最低位的 1
+    public int getKthAncestor2(int node, int k) {
+        for (; k > 0 && node != -1; k &= k - 1)
+            node = pa[node][Integer.numberOfTrailingZeros(k)];
+        return node;
+    }
+}
+
+作者：灵茶山艾府
+链接：https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/solutions/2305895/mo-ban-jiang-jie-shu-shang-bei-zeng-suan-v3rw/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
