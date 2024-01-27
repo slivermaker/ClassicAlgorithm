@@ -1149,6 +1149,7 @@ class Solution {
 #### lca
 ```java
 //董晓老师的lca模板
+//https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/description/
 class LCA {
         //倍增求LCA模板
         static final int N  = (int) (4e5 + 10);
