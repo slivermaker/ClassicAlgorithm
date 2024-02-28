@@ -595,6 +595,28 @@ class TreeAncestor {
         }
     }
 ```
+##### 埃氏筛
+```java
+    static int mx=(int)(5e6);
+    static boolean np[]=new boolean [mx+1];
+    static{
+        np[1]=false;
+        for(int i=2;i*i<=mx;i++){
+            if(!np[i]){
+                for(int j=i*i;j<=mx;j+=i){
+                    np[j]=true;
+                }
+            }
+        }
+    }
+    public int countPrimes(int n) {
+        int cnt=0;
+        for(int i=2;i<n;i++){
+            if(!np[i])cnt++;
+        }
+        return cnt;
+    }
+    ```
 
 ##### 快速幂
 
